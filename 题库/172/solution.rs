@@ -1,10 +1,7 @@
 impl Solution {
-    pub fn trailing_zeroes(mut n: i32) -> i32 {
-        let mut count = 0;
-        while n >= 5 {
-            n /= 5;
-            count += n;
-        }
-        count
+    fn zeros(n: i32) -> i32 {
+        (1u32..).map(|i|n / 5u64.pow(i))
+            .take_while(|&r| r != 0)
+            .sum()
     }
 }
