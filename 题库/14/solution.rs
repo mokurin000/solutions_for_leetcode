@@ -8,16 +8,12 @@ impl Solution {
         let max = strs.iter().max().unwrap();
         let min = strs.iter().min().unwrap();
 
-        let max = max.chars();
-        let min = min.chars();
+        let max = max.bytes();
+        let min = min.bytes();
 
         let mut re = String::new();
-        for (a, b) in max.zip(min) {
-            if a == b {
-                re.push(a);
-            } else {
-                return re;
-            }
+        for (a, b) in max.zip(min).take_while(|(a,b)|a==b) {
+            re.push(a as char);
         }
         re
     }
